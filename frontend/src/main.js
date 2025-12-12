@@ -1,5 +1,8 @@
 import Vue from 'vue';
+import store from './store';
+import MapView from './MapView.vue';
 
 new Vue({
-  render: h => h('div', 'MapApp frontend is running!')
+  store,
+  render: h => h(MapView)
 }).$mount('#app');
