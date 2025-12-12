@@ -27,10 +27,14 @@ MapApp/
 - [x] Add Dockerfiles for both
 - [x] Add docker-compose.yml
 - [x] Add initial package.json files
-- [ ] Initialize backend and frontend codebases
-- [ ] Test Docker build and container startup
+- [x] Initialize backend and frontend codebases
+- [x] Test Docker build and container startup
 
-## Next Steps
-- Initialize Express backend and Vue.js frontend
-- Implement REST API and map UI
-- Document decisions and update README.md
+## Sprint 2: Map UI & API Integration
+- [ ] Add Vuex store to frontend
+- [ ] Integrate Leaflet.js for map and pin drop
+- [ ] Connect frontend to backend API (save/retrieve locations)
+- [ ] Test full flow: drop pin, save, and view locations
+
+## Status
+Backend and frontend containers are running. Ready to implement map UI and connect to backend API.
