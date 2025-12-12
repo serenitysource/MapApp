@@ -3,20 +3,9 @@ services:
     build: ./backend
     ports:
       - "3000:3000"
-#    volumes:
-#      - ./backend:/app
-#    depends_on:
-#      - db
   frontend:
     build: ./frontend
     ports:
-      - "8080:80"
+      - "8081:80"
     volumes:
       - ./frontend:/app
-#    depends_on:
-#      - backend
-#  db:
-#    image: nouchka/sqlite3:latest
-#    volumes:
-#      - ./backend/data:/data
-    command: ["tail", "-f", "/dev/null"]

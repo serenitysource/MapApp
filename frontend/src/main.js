@@ -1,5 +1,8 @@
+
 import Vue from 'vue';
+import App from './App.vue';
+import 'leaflet/dist/leaflet.css';
 
 new Vue({
-  render: h => h('div', 'MapApp frontend is running!')
+  render: h => h(App)
 }).$mount('#app');
