@@ -27,14 +27,23 @@ app.post('/locations', (req, res) => {
   if (!address || lat == null || lng == null) {
     return res.status(400).json({ error: 'Missing address, lat, or lng' });
   }
-  const stmt = db.prepare('INSERT INTO locations (address, lat, lng) VALUES (?, ?, ?)');
-  stmt.run(address, lat, lng, function (err) {
+  // Check for duplicate (same address, lat, lng)
+  db.get('SELECT id FROM locations WHERE address = ? AND lat = ? AND lng = ?', [address, lat, lng], (err, row) => {
     if (err) {
       return res.status(500).json({ error: err.message });
     }
-    res.status(201).json({ id: this.lastID, address, lat, lng });
+    if (row) {
+      return res.status(409).json({ error: 'Location already saved' });
+    }
+    const stmt = db.prepare('INSERT INTO locations (address, lat, lng) VALUES (?, ?, ?)');
+    stmt.run(address, lat, lng, function (err) {
+      if (err) {
+        return res.status(500).json({ error: err.message });
+      }
+      res.status(201).json({ id: this.lastID, address, lat, lng });
+    });
+    stmt.finalize();
   });
-  stmt.finalize();
 });
 
 app.listen(PORT, () => {
